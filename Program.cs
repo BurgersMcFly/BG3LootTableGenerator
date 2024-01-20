@@ -1,5 +1,6 @@
 ﻿using BG3LootTableGenerator;
 using CommandLine;
+using System.Globalization;
 using System.Reflection.PortableExecutable;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -12,13 +13,13 @@ void Run(CmdlineOptions options)
     Config.DestinationDir = options.DestinationDir.Replace('\\', '/');
     Config.WriteProofOfConcept = options.WriteProofOfConcept;
 
-    Localization localization = new("English/Localization/English/english.xml");
+    Localization localization = new("English/Localization/English/english.loca.xml");
 
     List<string> templateLoadOrder = new() {
         "Shared/Public/Shared",
         "Shared/Public/SharedDev",
         "Gustav/Public/Gustav",
-        "Gustav/Public/GustavDev"
+        "Gustav/Public/GustavDev",
     };
 
     Tags tags = new(templateLoadOrder);
@@ -61,18 +62,21 @@ void SaveOutput(Data data)
 
 void WriteResourceList(Items items, JsonSerializerOptions opts)
 {
-    string path = Path.Combine(Config.DestinationDir, "items.json");
+    string currentDate = DateTime.Now.ToString("d", CultureInfo.CurrentCulture).Replace("/", "_");
+    string path = Path.Combine(Config.DestinationDir, $"items_{currentDate}.json");
     Util.SaveToFile(path, JsonSerializer.Serialize(items.Entries.Values, opts));
 }
 void WriteLevels(Levels levels, JsonSerializerOptions opts)
 {
-    string path = Path.Combine(Config.DestinationDir, "levels.json");
+    string currentDate = DateTime.Now.ToString("d", CultureInfo.CurrentCulture).Replace("/", "_");
+    string path = Path.Combine(Config.DestinationDir, $"levels_{currentDate}.json");
     Util.SaveToFile(path, JsonSerializer.Serialize(levels.Entries.Values, opts));
 }
 
 void WriteTraders(Levels levels, JsonSerializerOptions opts)
 {
-    string path = Path.Combine(Config.DestinationDir, "traders.json");
+    string currentDate = DateTime.Now.ToString("d", CultureInfo.CurrentCulture).Replace("/", "_");
+    string path = Path.Combine(Config.DestinationDir, $"traders_{currentDate}.json");
     Util.SaveToFile(path, JsonSerializer.Serialize(levels.Entries.Values
         .Select(l => new TraderLevel(
             LevelName: l.Name,

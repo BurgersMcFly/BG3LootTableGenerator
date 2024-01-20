@@ -1,7 +1,7 @@
 # BG3LootTableGenerator
 Fork of BG3LootTableGenerator for personal use with some minor changes.
 
-# Differences from the original:
+# Differences from the original
 Looks for english.loca.xml instead of english.xml since loca.xml is the default output of BG3 multitool. Adds current date to the dumped .json files (e.g. items_1_20_2024.json)
 
 # Usage

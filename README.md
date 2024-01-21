@@ -11,9 +11,9 @@ Dump data to .json files with: `BGLootTableGenerator.exe [path_to_unpacked_conte
 
 You'll get:
 
-- `items.json`: every item, formatted in a much more searchable/parseable way
-- `levels.json`: every level, formatted in a much more searchable/parseable way
-- `traders.json`: every trader, formatted in a much more searchable/parseable way
+- `items_date.json`: every item, formatted in a much more searchable/parseable way
+- `levels_date.json`: every level, formatted in a much more searchable/parseable way
+- `traders_date.json`: every trader, formatted in a much more searchable/parseable way
 
 # Credits
 Full credits to [Liareth](https://github.com/Liareth). This is just a fork of their tool [BG3LootTableGenerator](https://github.com/Liareth/BG3LootTableGenerator) with some minor changes for personal usage.
